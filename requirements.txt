@@ -1,0 +1,7 @@
+numpy
+matplotlib
+spyder==5.3.1
+imageio-ffmpeg
+imageio
+scikit-image
+ffmpeg-python
