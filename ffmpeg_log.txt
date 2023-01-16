@@ -1,5 +1,5 @@
 FFmpeg full command line with arguments:
-C:\Program Files\ffmpeg\bin\ffmpeg.exe -y -video_size 1224x970 -pixel_format rgb24 -f rawvideo -framerate 25 -color_primaries bt709 -color_trc bt709 -colorspace bt709 -i pipe: -vcodec ffv1 -pix_fmt gray -crf 17 -dst_range 0 -color_primaries bt709 -color_trc bt709 -colorspace bt709 output.avi
+C:\Program Files\ffmpeg\bin\ffmpeg.exe -y -video_size 1224x970 -pixel_format gray16 -f rawvideo -framerate 25 -i pipe: -vcodec ffv1 output.avi
 
 ffmpeg version 2022-04-28-git-ec07b15477-full_build-www.gyan.dev Copyright (c) 2000-2022 the FFmpeg developers
   built with gcc 11.2.0 (Rev10, Built by MSYS2 project)
@@ -13,15 +13,15 @@ ffmpeg version 2022-04-28-git-ec07b15477-full_build-www.gyan.dev Copyright (c) 2
   libswresample   4.  6.100 /  4.  6.100
   libpostproc    56.  5.100 / 56.  5.100
 Input #0, rawvideo, from 'pipe:':
-  Duration: N/A, start: 0.000000, bitrate: 712368 kb/s
-  Stream #0:0: Video: rawvideo (RGB[24] / 0x18424752), rgb24(bt709), 1224x970, 712368 kb/s, 25 tbr, 25 tbn
-Codec AVOption crf (Select the quality for constant quality mode) specified for output file #0 (output.avi) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some encoder which was not actually used for any stream.
+  Duration: N/A, start: 0.000000, bitrate: 474912 kb/s
+  Stream #0:0: Video: rawvideo (Y1[0][16] / 0x10003159), gray16le, 1224x970, 474912 kb/s, 25 tbr, 25 tbn
 Stream mapping:
   Stream #0:0 -> #0:0 (rawvideo (native) -> ffv1 (native))
+[ffv1 @ 00000172625d9a80] bits_per_raw_sample > 8, forcing range coder
 Output #0, avi, to 'output.avi':
   Metadata:
     ISFT            : Lavf59.23.100
-  Stream #0:0: Video: ffv1 (FFV1 / 0x31564646), gray(pc, bt709, progressive), 1224x970, q=2-31, 200 kb/s, 25 fps, 25 tbn
+  Stream #0:0: Video: ffv1 (FFV1 / 0x31564646), gray16le(progressive), 1224x970, q=2-31, 200 kb/s, 25 fps, 25 tbn
     Metadata:
       encoder         : Lavc59.27.100 ffv1
-frame=    1 fps=0.0 q=-0.0 size=     512kB time=00:00:00.04 bitrate=104857.6kbits/s speed=4e+04x    frame=   44 fps=0.0 q=-0.0 size=   26880kB time=00:00:01.76 bitrate=125114.2kbits/s speed= 3.5x    
+frame=    1 fps=0.0 q=-0.0 size=     512kB time=00:00:00.04 bitrate=104857.6kbits/s speed=2e+04x    frame=   16 fps=0.0 q=-0.0 size=   11776kB time=00:00:00.64 bitrate=150732.8kbits/s speed=1.27x    frame=   33 fps= 32 q=-0.0 size=   24320kB time=00:00:01.32 bitrate=150931.4kbits/s speed=1.28x    

@@ -1,6 +1,7 @@
 import imageio
 import ffmpeg
 import numpy as np
+import matplotlib.pyplot as plt
 # ffmpeg need to be instaled (avaliable from command line - added to system path enviromental variable)
 
 
@@ -40,16 +41,16 @@ def save_video(filename,output):
 
 
 
-data = load_video('Gacr_01_001_01_580_m_short.avi')
+# data = load_video('Gacr_01_001_01_580_m_short.avi')
 
 
 
-save_video('output.avi',data[:,:,:,0])
+# save_video('output.avi',data[:,:,:,0])
 
 
 
 data_out = load_video('output.avi')
+plt.imshow(data_out[0,:,:,0])
 
 
-
-print(np.sum(np.abs(data[:,:,:,0] - data_out[:,:,:,0])))
+# print(np.sum(np.abs(data[:,:,:,0] - data_out[:,:,:,0])))
