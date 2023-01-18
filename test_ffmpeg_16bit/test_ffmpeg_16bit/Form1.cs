@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BitMiracle.LibTiff.Classic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,9 +29,9 @@ namespace test_ffmpeg_16bit
 
             ffmpegVideoLoader.loadMetadata();
 
-            imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
+            //imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
 
-            //imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
+            imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
 
 
         }
@@ -44,10 +45,22 @@ namespace test_ffmpeg_16bit
         {
             Bitmap img = imgs.ElementAt(decimal.ToInt32(numericUpDown_frameNum.Value));
 
-            Bitmap img_new = img.Clone(new Rectangle(0, 0, img.Width, img.Height), PixelFormat.Format24bppRgb);
-            pictureBox1.Image = img_new;
+            // cant show or convert 16 bit - but you can save them
 
-            //pictureBox1.Image = img;
+            //Bitmap tmp_img = new Bitmap(img);
+            //Bitmap img_new = tmp_img.Clone(new Rectangle(0, 0, img.Width, img.Height), PixelFormat.Format24bppRgb);
+            //pictureBox1.Image = img_new;
+
+
+            //Bitmap img_new = new Bitmap(img.Width, img.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
+            //using (Graphics gr = Graphics.FromImage(img_new))
+            //{
+            //    gr.DrawImage(img, new Rectangle(0, 0, img_new.Width, img_new.Height));
+            //}
+            //pictureBox1.Image = img_new;
+
+            pictureBox1.Image = img;
         }
 
         private void numericUpDown_frameNum_ValueChanged(object sender, EventArgs e)
@@ -56,6 +69,18 @@ namespace test_ffmpeg_16bit
             {
                 button_show.PerformClick();
             }
+        }
+
+        private void button_writeTiff_Click(object sender, EventArgs e)
+        {
+
+            Bitmap img = imgs.ElementAt(decimal.ToInt32(numericUpDown_frameNum.Value));
+
+            TiffWriter tiffWriter = new TiffWriter();
+
+            tiffWriter.writeTiff(img, numericUpDown_frameNum.Value.ToString() + ".tiff");
+
+
         }
     }
 }

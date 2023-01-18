@@ -146,11 +146,6 @@ namespace test_ffmpeg_16bit
                     img_completed = true;
                 }
 
-                if (img_completed)
-                {
-                    var a = 5;
-                }
-
 
                 var length = 0;
                 if (read_length > 0)

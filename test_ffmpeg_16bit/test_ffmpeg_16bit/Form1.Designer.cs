@@ -36,6 +36,7 @@ namespace test_ffmpeg_16bit
             this.textBox_pathSave = new System.Windows.Forms.TextBox();
             this.textBox_pathLoad = new System.Windows.Forms.TextBox();
             this.numericUpDown_frameNum = new System.Windows.Forms.NumericUpDown();
+            this.button_writeTiff = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_frameNum)).BeginInit();
             this.SuspendLayout();
@@ -105,11 +106,22 @@ namespace test_ffmpeg_16bit
             this.numericUpDown_frameNum.TabIndex = 6;
             this.numericUpDown_frameNum.ValueChanged += new System.EventHandler(this.numericUpDown_frameNum_ValueChanged);
             // 
+            // button_writeTiff
+            // 
+            this.button_writeTiff.Location = new System.Drawing.Point(13, 140);
+            this.button_writeTiff.Name = "button_writeTiff";
+            this.button_writeTiff.Size = new System.Drawing.Size(75, 23);
+            this.button_writeTiff.TabIndex = 7;
+            this.button_writeTiff.Text = "write tiff";
+            this.button_writeTiff.UseVisualStyleBackColor = true;
+            this.button_writeTiff.Click += new System.EventHandler(this.button_writeTiff_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1445, 669);
+            this.Controls.Add(this.button_writeTiff);
             this.Controls.Add(this.numericUpDown_frameNum);
             this.Controls.Add(this.textBox_pathLoad);
             this.Controls.Add(this.textBox_pathSave);
@@ -135,6 +147,7 @@ namespace test_ffmpeg_16bit
         private System.Windows.Forms.TextBox textBox_pathSave;
         private System.Windows.Forms.TextBox textBox_pathLoad;
         private System.Windows.Forms.NumericUpDown numericUpDown_frameNum;
+        private System.Windows.Forms.Button button_writeTiff;
     }
 }
 
