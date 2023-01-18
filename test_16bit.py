@@ -82,7 +82,7 @@ def save_video16bit(filename,output):
 
     ff_proc = (
         ffmpeg
-        .input('pipe:',format='rawvideo',pix_fmt='gray16le',s=str(output.shape[2]) + 'x' + str(output.shape[1]),r=str(frame_rate))
+        .input('pipe:',format='rawvideo',pix_fmt='gray16',s=str(output.shape[2]) + 'x' + str(output.shape[1]),r=str(frame_rate))
         .output(filename,vcodec='ffv1', an=None)
         .overwrite_output()
         .run_async(pipe_stdin=True)

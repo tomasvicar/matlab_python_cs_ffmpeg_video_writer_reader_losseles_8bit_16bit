@@ -86,8 +86,9 @@ namespace test_ffmpeg_16bit
             this.textBox_pathSave.Name = "textBox_pathSave";
             this.textBox_pathSave.Size = new System.Drawing.Size(982, 20);
             this.textBox_pathSave.TabIndex = 4;
-            this.textBox_pathSave.Text = "\r\nC:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\output.a" +
-    "vi";
+            this.textBox_pathSave.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\output.avi" +
+    "";
+            this.textBox_pathSave.TextChanged += new System.EventHandler(this.textBox_pathSave_TextChanged);
             // 
             // textBox_pathLoad
             // 
@@ -96,7 +97,7 @@ namespace test_ffmpeg_16bit
             this.textBox_pathLoad.Size = new System.Drawing.Size(1013, 20);
             this.textBox_pathLoad.TabIndex = 5;
             this.textBox_pathLoad.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\Gacr_01_00" +
-    "1_01_580_m_short_16bit.avi";
+    "1_01_580_m_short.avi";
             // 
             // numericUpDown_frameNum
             // 

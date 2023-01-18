@@ -15,7 +15,6 @@ namespace test_ffmpeg_16bit
     public partial class Form1 : Form
     {
         List<Bitmap> imgs;
-
         public Form1()
         {
             InitializeComponent();
@@ -29,15 +28,21 @@ namespace test_ffmpeg_16bit
 
             ffmpegVideoLoader.loadMetadata();
 
-            //imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
+            imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
 
-            imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
+            //imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
 
 
         }
 
         private void button_save_Click(object sender, EventArgs e)
         {
+
+            FfmpegVideoWriter ffmpegVideoWriter = new FfmpegVideoWriter(textBox_pathSave.Text);
+
+            ffmpegVideoWriter.writeVideo(imgs, 25, "gray16");
+            //ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24");
+
 
         }
 
@@ -80,6 +85,11 @@ namespace test_ffmpeg_16bit
 
             tiffWriter.writeTiff(img, numericUpDown_frameNum.Value.ToString() + ".tiff");
 
+
+        }
+
+        private void textBox_pathSave_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
