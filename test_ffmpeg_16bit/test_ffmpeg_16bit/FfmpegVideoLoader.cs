@@ -108,14 +108,15 @@ namespace test_ffmpeg_16bit
             //PixelFormat bitmapPixelFormat = PixelFormat.Format24bppRgb;
             //int bytesPersample = 3;
 
-
+            //string argument = " -y -i " + filename + " -an -f image2pipe -vcodec rawvideo -pix_fmt " + ffmpegPixelFormat + " -";
+            string argument = " -y -i " + filename + " -f rawvideo -pix_fmt " + ffmpegPixelFormat + " pipe:";
 
             var process = new Process
             {
                 StartInfo =
                 {
                     FileName = ffmpeg,
-                    Arguments = " -y -i " + filename + " -an -f image2pipe -vcodec rawvideo -pix_fmt "+ ffmpegPixelFormat + " -",
+                    Arguments = argument,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardInput = true,

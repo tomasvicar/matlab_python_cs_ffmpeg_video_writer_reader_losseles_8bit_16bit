@@ -28,9 +28,9 @@ namespace test_ffmpeg_16bit
 
             ffmpegVideoLoader.loadMetadata();
 
-            imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
+            //imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
 
-            //imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
+            imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
 
 
         }
@@ -40,8 +40,8 @@ namespace test_ffmpeg_16bit
 
             FfmpegVideoWriter ffmpegVideoWriter = new FfmpegVideoWriter(textBox_pathSave.Text);
 
-            ffmpegVideoWriter.writeVideo(imgs, 25, "gray16");
-            //ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24");
+            //ffmpegVideoWriter.writeVideo(imgs, 25, "gray16");
+            ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24");
 
 
         }
