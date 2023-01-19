@@ -28,9 +28,23 @@ namespace test_ffmpeg_16bit
 
             ffmpegVideoLoader.loadMetadata();
 
-            //imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
+           
 
-            imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
+            //
+
+            if (comboBox_type.Text == "rgb24")
+            {
+                imgs = ffmpegVideoLoader.loadVideo("rgb24", PixelFormat.Format24bppRgb, 3);
+            }
+            else if (comboBox_type.Text == "gray16le")
+            {
+
+                imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
+            }
+            else
+            {
+                throw new Exception("invalid selection type");
+            }
 
 
         }
@@ -40,8 +54,20 @@ namespace test_ffmpeg_16bit
 
             FfmpegVideoWriter ffmpegVideoWriter = new FfmpegVideoWriter(textBox_pathSave.Text);
 
-            //ffmpegVideoWriter.writeVideo(imgs, 25, "gray16");
-            ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24");
+            if (comboBox_type.Text == "rgb24")
+            {
+                ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24", "bgr0");
+            }
+            else if (comboBox_type.Text == "gray16le")
+            {
+
+                ffmpegVideoWriter.writeVideo(imgs, 25, "gray16", "gray16le");
+            }
+            else 
+            {
+                throw new Exception("invalid selection type");
+            }
+             
 
 
         }

@@ -1,27 +1,0 @@
-FFmpeg full command line with arguments:
-C:\Program Files\ffmpeg\bin\ffmpeg.exe -y -video_size 1224x970 -pixel_format gray16 -f rawvideo -framerate 25 -i pipe: -vcodec ffv1 -pix_fmt gray16 output.avi
-
-ffmpeg version 2022-04-28-git-ec07b15477-full_build-www.gyan.dev Copyright (c) 2000-2022 the FFmpeg developers
-  built with gcc 11.2.0 (Rev10, Built by MSYS2 project)
-  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libdavs2 --enable-libuavs3d --enable-libzvbi --enable-librav1e --enable-libsvtav1 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxvid --enable-libaom --enable-libjxl --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
-  libavutil      57. 24.101 / 57. 24.101
-  libavcodec     59. 27.100 / 59. 27.100
-  libavformat    59. 23.100 / 59. 23.100
-  libavdevice    59.  6.100 / 59.  6.100
-  libavfilter     8. 37.100 /  8. 37.100
-  libswscale      6.  6.100 /  6.  6.100
-  libswresample   4.  6.100 /  4.  6.100
-  libpostproc    56.  5.100 / 56.  5.100
-Input #0, rawvideo, from 'pipe:':
-  Duration: N/A, start: 0.000000, bitrate: 474912 kb/s
-  Stream #0:0: Video: rawvideo (Y1[0][16] / 0x10003159), gray16le, 1224x970, 474912 kb/s, 25 tbr, 25 tbn
-Stream mapping:
-  Stream #0:0 -> #0:0 (rawvideo (native) -> ffv1 (native))
-[ffv1 @ 000001e742238740] bits_per_raw_sample > 8, forcing range coder
-Output #0, avi, to 'output.avi':
-  Metadata:
-    ISFT            : Lavf59.23.100
-  Stream #0:0: Video: ffv1 (FFV1 / 0x31564646), gray16le(progressive), 1224x970, q=2-31, 200 kb/s, 25 fps, 25 tbn
-    Metadata:
-      encoder         : Lavc59.27.100 ffv1
-frame=    1 fps=0.0 q=-0.0 size=     512kB time=00:00:00.04 bitrate=104857.6kbits/s speed=2e+04x    frame=   17 fps=0.0 q=-0.0 size=   12544kB time=00:00:00.68 bitrate=151118.3kbits/s speed=1.33x    frame=   34 fps= 33 q=-0.0 size=   25088kB time=00:00:01.36 bitrate=151118.3kbits/s speed=1.33x    

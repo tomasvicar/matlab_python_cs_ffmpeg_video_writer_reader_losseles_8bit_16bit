@@ -38,14 +38,14 @@ namespace test_ffmpeg_16bit
 
         }
 
-        public void writeVideo(List<Bitmap> imgs, int fps, string ffmpegPixelFormat)
+        public void writeVideo(List<Bitmap> imgs, int fps, string ffmpegPixelFormat_in, string ffmpegPixelFormat_out)
         {
 
             //string arguments = " -y -framerate " + fps.ToString() + " -f image2pipe -i - -vcodec ffv1 -pix_fmt " + ffmpegPixelFormat + " " + filename;
 
             //string arguments = " -y -framerate " + fps.ToString() + " -f image2pipe -i - -vcodec ffv1 -pix_fmt " + ffmpegPixelFormat + " " + filename;
 
-            string arguments = " -y -framerate " + fps.ToString() + " -s 1224x970 -pixel_format " + ffmpegPixelFormat + " -f rawvideo -i pipe: -vcodec ffv1 -pix_fmt " + ffmpegPixelFormat + " " + filename;
+            string arguments = " -y -framerate " + fps.ToString() + " -s 1224x970 -pixel_format " + ffmpegPixelFormat_in + " -f rawvideo -i pipe: -vcodec ffv1 -pix_fmt " + ffmpegPixelFormat_out + " " + filename;
 
             //string arguments = " -y -framerate " + fps.ToString() + " -f image2pipe -i - -vcodec libx264 -crf 23 -pix_fmt yuv420p -preset ultrafast -r " + fps.ToString() + " out.mp4";
 

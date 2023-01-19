@@ -37,6 +37,7 @@ namespace test_ffmpeg_16bit
             this.textBox_pathLoad = new System.Windows.Forms.TextBox();
             this.numericUpDown_frameNum = new System.Windows.Forms.NumericUpDown();
             this.button_writeTiff = new System.Windows.Forms.Button();
+            this.comboBox_type = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_frameNum)).BeginInit();
             this.SuspendLayout();
@@ -86,8 +87,8 @@ namespace test_ffmpeg_16bit
             this.textBox_pathSave.Name = "textBox_pathSave";
             this.textBox_pathSave.Size = new System.Drawing.Size(982, 20);
             this.textBox_pathSave.TabIndex = 4;
-            this.textBox_pathSave.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\output.avi" +
-    "";
+            this.textBox_pathSave.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\retina_gra" +
+    "y16_cs.avi";
             this.textBox_pathSave.TextChanged += new System.EventHandler(this.textBox_pathSave_TextChanged);
             // 
             // textBox_pathLoad
@@ -96,8 +97,8 @@ namespace test_ffmpeg_16bit
             this.textBox_pathLoad.Name = "textBox_pathLoad";
             this.textBox_pathLoad.Size = new System.Drawing.Size(1013, 20);
             this.textBox_pathLoad.TabIndex = 5;
-            this.textBox_pathLoad.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\Gacr_01_00" +
-    "1_01_580_m_short.avi";
+            this.textBox_pathLoad.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\retina_gra" +
+    "y16.avi";
             // 
             // numericUpDown_frameNum
             // 
@@ -117,11 +118,24 @@ namespace test_ffmpeg_16bit
             this.button_writeTiff.UseVisualStyleBackColor = true;
             this.button_writeTiff.Click += new System.EventHandler(this.button_writeTiff_Click);
             // 
+            // comboBox_type
+            // 
+            this.comboBox_type.FormattingEnabled = true;
+            this.comboBox_type.Items.AddRange(new object[] {
+            "rgb24",
+            "gray16"});
+            this.comboBox_type.Location = new System.Drawing.Point(379, 524);
+            this.comboBox_type.Name = "comboBox_type";
+            this.comboBox_type.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_type.TabIndex = 8;
+            this.comboBox_type.Text = "rgb24";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1445, 669);
+            this.Controls.Add(this.comboBox_type);
             this.Controls.Add(this.button_writeTiff);
             this.Controls.Add(this.numericUpDown_frameNum);
             this.Controls.Add(this.textBox_pathLoad);
@@ -149,6 +163,7 @@ namespace test_ffmpeg_16bit
         private System.Windows.Forms.TextBox textBox_pathLoad;
         private System.Windows.Forms.NumericUpDown numericUpDown_frameNum;
         private System.Windows.Forms.Button button_writeTiff;
+        private System.Windows.Forms.ComboBox comboBox_type;
     }
 }
 

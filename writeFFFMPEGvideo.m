@@ -1,5 +1,7 @@
 function [] = writeFFFMPEGvideo(filename, data, fps)
     
+    ffmpeg_path = 'ffmpeg.exe';
+    codec = 'ffv1'; %losseles codec
     
 %     filename = 'output.avi';
 %     data = imread('peppers.png');
@@ -7,31 +9,36 @@ function [] = writeFFFMPEGvideo(filename, data, fps)
 %     fps = 25;
 
 
-    if (size(data,3) == 3) && isa(x,'uint8')
-        format = 'rgb24';
-    elseif (size(data,3) == 1) && isa(x,'uint16')
-        format = 'gray16';
+
+    if (size(data,3) == 3) && isa(data,'uint8')
+        format_in = 'rgb24';
+        format_out = 'bgr0'; % superted by ffv1 codec "ffmpeg -h encoder=ffv1 -v quiet" for list of avaliable and "ffmpeg -pix_fmts" says it has all bytes
+    elseif (size(data,3) == 1) && isa(data,'uint16')
+        format_in = 'gray16';
+        format_out = 'gray16le';
     else
         error('data type not implemented')
     end
 
-    codec = ffv1; %losseles codec
 
     width =size(data,2);
     height = size(data,1);
     n_frames = size(data,4);
     
     
-    cmd = ['ffmpeg.exe', ...
+    cmd = [ffmpeg_path, ...
          ' -y' ...
          ' -video_size ', num2str(width),'x', num2str(height), ...
-         ' -pixel_format ', format, ... 
          ' -f rawvideo', ...
+         ' -pixel_format ', format_in, ... 
          ' -framerate ', num2str(fps), ...
          ' -i pipe:', ...
          ' -vcodec ', codec...
-         ' -pix_fmt ', format, ...
+         ' -pix_fmt ', format_out, ...
          ' ', filename];
+
+%     ' -pix_fmt ', format_out, ...
+%     -filter:v "format=yuv420p"
     
     p = java.lang.Runtime.getRuntime().exec(cmd);
     registerFfmpegProcess(cmd, p);
@@ -67,6 +74,18 @@ function [] = writeFFFMPEGvideo(filename, data, fps)
     p_stdin = [];
 
     unregisterFfmpegProcess(cmd);
+
+    pause(0.05)
+
+    if ~isfile(filename)
+        error('file was not created')
+    end
+    
+    s=dir(filename);
+    the_size=s.bytes;
+    if the_size < 1000
+        error('file was creted almost empty')
+    end
 
 end
 

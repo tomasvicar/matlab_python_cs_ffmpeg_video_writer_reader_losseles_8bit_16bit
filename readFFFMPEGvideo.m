@@ -1,4 +1,7 @@
-function [data] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_channels, cast_to_uint16)
+function [data,fps] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_channels, cast_to_uint16)
+
+ffmpeg_path = 'ffmpeg.exe';
+ffprobe_path = 'ffprobe.exe';
 
 %     filename = 'Gacr_01_001_01_580_m_short.avi';
 %     format = 'rgb24';
@@ -13,10 +16,10 @@ function [data] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_chan
 %     cast_to_uint16 = true;
 
     
-    [metadata] = getMetaData(filename);
+    [metadata] = getMetaData(filename,ffprobe_path);
 
 
-    cmd = ['ffmpeg.exe', ...
+    cmd = [ffmpeg_path, ...
          ' -y', ...
          ' -i ', filename, ...
          ' -f rawvideo', ...
@@ -33,11 +36,31 @@ function [data] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_chan
     n = metadata.Width*metadata.Height*metadata.NumberOfFrames * bytes_per_pixel;
     data = zeros(1,n,'int8');
     index = 1;
+    empty_counter = 0;
+    counter = 0;
     while index < n
         out = read_BufferedInputStream(p_stdin);
         data(index:index + length(out) - 1) = out;
         index = index + length(out);
+        if isempty(out)
+            empty_counter = empty_counter + 1;
+        else
+            empty_counter = 0;
+        end
+        if empty_counter > 100000
+            error('reading problem')
+        end
+        counter = counter +1;
+        if mod(counter,100) ==0
+            p_stderr_bytes_available = p_stderr.available();
+            if (p_stderr_bytes_available > 0)
+                out = read_BufferedInputStream(p_stderr);
+                disp(char(out));
+            end
+        end
     end
+
+
 
     if cast_to_uint16
         data = typecast(data, 'uint16');
@@ -48,7 +71,7 @@ function [data] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_chan
     data = reshape(data,[color_channels, metadata.Width, metadata.Height, metadata.NumberOfFrames]);
 
     data = permute(data, [3,2,1,4]);
-    imshow(data(:,:,:,2))
+%     imshow(data(:,:,:,2))
 
     p_stderr.close();
     p_stderr = [];
@@ -57,12 +80,13 @@ function [data] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_chan
     p_stdin = [];
 
     unregisterFfmpegProcess(cmd);
+    fps = metadata.FrameRate;
 
 end
 
-function [metadata] = getMetaData(filename)
+function [metadata] = getMetaData(filename,ffprobe_path)
      % get metadata using FFPROBE
-     out = evalc(['!ffprobe -show_streams ' filename]);
+     out = evalc(['!' ffprobe_path ' -show_streams ' filename]);
      out(strfind(out, '=')) = [];
      % map FFPROBE output to their corresponding class variables
      keys = {'nb_frames', 'width', 'height', 'r_frame_rate'};

@@ -6,6 +6,9 @@ ffmpeg.exe
 ffprobe.exe
 *.asv
 *.pyc
+*.avi
+!retina_rgb24.avi
+!retina_gray16.avi
 
 # User-specific files
 .rsuser
