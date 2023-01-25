@@ -16,6 +16,9 @@ function [] = writeFFFMPEGvideo(filename, data, fps)
     elseif (size(data,3) == 1) && isa(data,'uint16')
         format_in = 'gray16';
         format_out = 'gray16le';
+    elseif (size(data,3) == 1) && isa(data,'uint8')
+        format_in = 'gray8';
+        format_out = 'gray8';  
     else
         error('data type not implemented')
     end

@@ -33,6 +33,10 @@ def load_video(file_name):
         fmt =  np.uint16
         color = 1
         pix_fmt_out = 'gray16'
+    elif 'gray8':
+        fmt =  np.uint8
+        color = 1
+        pix_fmt_out = 'gray8'
     else:
         raise('add this format condition ' + video_stream['pix_fmt'])
     
@@ -72,6 +76,9 @@ def save_video(filename, data, fps, codec='ffv1'):
         pix_fmt_in = 'rgb24'
         pix_fmt_out = 'bgr0'
         # superted by ffv1 codec "ffmpeg -h encoder=ffv1 -v quiet" for list of avaliable and "ffmpeg -pix_fmts" says it has all bytes
+    elif data.dtype == np.uint8 and data.shape[3] == 1:
+        pix_fmt_in = 'gray8'
+        pix_fmt_out = 'gray8'
     else:
         raise('format is not implemented')   
         
@@ -99,14 +106,14 @@ def save_video(filename, data, fps, codec='ffv1'):
 if __name__ == '__main__':
     
     
-    start =  time.time()
-    data_16bit, fps = load_video('retina_gray16.avi')
-    save_video('retina_gray16_python.avi', data_16bit, fps)
-    data_16bit_new, fps = load_video('retina_gray16_python.avi')
+    # start =  time.time()
+    # data_16bit, fps = load_video('retina_gray16.avi')
+    # save_video('retina_gray16_python.avi', data_16bit, fps)
+    # data_16bit_new, fps = load_video('retina_gray16_python.avi')
     
-    print(np.sum(np.abs(data_16bit - data_16bit_new)))
+    # print(np.sum(np.abs(data_16bit - data_16bit_new)))
     
-    print('time elapsed ' + str(time.time() - start))
+    # print('time elapsed ' + str(time.time() - start))
     
     
     # start =  time.time()
@@ -117,6 +124,16 @@ if __name__ == '__main__':
     # print(np.sum(np.abs(data - data_new)))
     
     # print('time elapsed ' + str(time.time() - start))
+    
+    
+    start =  time.time()
+    data_8bit, fps = load_video('retina_gray8.avi')
+    save_video('retina_gray8_python.avi', data_8bit, fps)
+    data_8bit_new, fps = load_video('retina_gray8_python.avi')
+    
+    print(np.sum(np.abs(data_8bit - data_8bit_new)))
+    
+    print('time elapsed ' + str(time.time() - start))
     
     
     

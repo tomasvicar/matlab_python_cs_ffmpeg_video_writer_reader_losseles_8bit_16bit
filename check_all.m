@@ -10,10 +10,20 @@ clc;clear all;close all;
 
 
 
-[data_matlab,fps] = readFFFMPEGvideo('retina_rgb24_matlab.avi', 'rgb24', 3, 3, false);
+% [data_matlab,fps] = readFFFMPEGvideo('retina_rgb24_matlab.avi', 'rgb24', 3, 3, false);
+% 
+% [data_python,fps] = readFFFMPEGvideo('retina_rgb24_python.avi', 'rgb24', 3, 3, false);
+% 
+% [data_cs,fps] = readFFFMPEGvideo('retina_rgb24_cs.avi', 'rgb24', 3, 3, false);
+% 
+% disp(sum(abs(data_matlab - data_python) + abs(data_python - data_cs),'all'))
 
-[data_python,fps] = readFFFMPEGvideo('retina_rgb24_python.avi', 'rgb24', 3, 3, false);
 
-[data_cs,fps] = readFFFMPEGvideo('retina_rgb24_cs.avi', 'rgb24', 3, 3, false);
 
-disp(sum(abs(data_matlab - data_python) + abs(data_python - data_cs),'all'))
+[data_8bit_matlab,fps] = readFFFMPEGvideo('retina_gray8_matlab.avi', 'gray8', 1, 1, false);
+
+[data_8bit_python,fps] = readFFFMPEGvideo('retina_gray8_python.avi', 'gray8', 1, 1, false);
+
+[data_8bit_cs,fps] = readFFFMPEGvideo('retina_gray8_cs.avi', 'gray8', 1, 1, false);
+
+disp(sum(abs(data_8bit_matlab - data_8bit_python) + abs(data_8bit_python - data_8bit_cs),'all'))

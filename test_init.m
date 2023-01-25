@@ -17,5 +17,10 @@ toc
 
 
 
+writeFFFMPEGvideo('retina_gray8.avi', data_8bit, fps);
 
+[data_8bit_load,fps] = readFFFMPEGvideo('retina_gray8.avi', 'gray8', 1, 1, false);
+
+disp(sum(abs(data_8bit_load - data_8bit),'all'))
+toc
 

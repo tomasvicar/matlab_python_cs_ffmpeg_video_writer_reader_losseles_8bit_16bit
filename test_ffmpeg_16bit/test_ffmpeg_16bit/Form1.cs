@@ -41,6 +41,12 @@ namespace test_ffmpeg_16bit
 
                 imgs = ffmpegVideoLoader.loadVideo("gray16", PixelFormat.Format16bppGrayScale, 2);
             }
+            else if (comboBox_type.Text == "gray8")
+            {
+
+                imgs = ffmpegVideoLoader.loadVideo("gray8", PixelFormat.Format8bppIndexed, 1);
+            }
+
             else
             {
                 throw new Exception("invalid selection type");
@@ -63,7 +69,11 @@ namespace test_ffmpeg_16bit
 
                 ffmpegVideoWriter.writeVideo(imgs, 25, "gray16", "gray16le");
             }
-            else 
+            else if (comboBox_type.Text == "gray8")
+            {
+                ffmpegVideoWriter.writeVideo(imgs, 25, "gray8", "gray8");
+            }
+            else
             {
                 throw new Exception("invalid selection type");
             }

@@ -88,7 +88,7 @@ namespace test_ffmpeg_16bit
             this.textBox_pathSave.Size = new System.Drawing.Size(982, 20);
             this.textBox_pathSave.TabIndex = 4;
             this.textBox_pathSave.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\retina_gra" +
-    "y16_cs.avi";
+    "y8_cs.avi";
             this.textBox_pathSave.TextChanged += new System.EventHandler(this.textBox_pathSave_TextChanged);
             // 
             // textBox_pathLoad
@@ -98,7 +98,7 @@ namespace test_ffmpeg_16bit
             this.textBox_pathLoad.Size = new System.Drawing.Size(1013, 20);
             this.textBox_pathLoad.TabIndex = 5;
             this.textBox_pathLoad.Text = "C:\\Users\\vicar\\Desktop\\test_ffmpeg\\matlab_python_video_ffmpeg_losseles\\retina_gra" +
-    "y16.avi";
+    "y8.avi";
             // 
             // numericUpDown_frameNum
             // 
@@ -123,12 +123,13 @@ namespace test_ffmpeg_16bit
             this.comboBox_type.FormattingEnabled = true;
             this.comboBox_type.Items.AddRange(new object[] {
             "rgb24",
-            "gray16"});
+            "gray16",
+            "gray8"});
             this.comboBox_type.Location = new System.Drawing.Point(379, 524);
             this.comboBox_type.Name = "comboBox_type";
             this.comboBox_type.Size = new System.Drawing.Size(121, 21);
             this.comboBox_type.TabIndex = 8;
-            this.comboBox_type.Text = "rgb24";
+            this.comboBox_type.Text = "gray8";
             // 
             // Form1
             // 
