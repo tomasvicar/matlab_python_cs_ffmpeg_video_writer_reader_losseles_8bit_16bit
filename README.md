@@ -4,3 +4,10 @@ FFMPEG wrapper for writing and reading 8bit or 16 bit video (gray8, gray16, rgb2
 
 Examples are easy to modify for custom codecs and data formats. Matlab and C# examples contains custom direct writing to pipe, and Python example uses ffmpeg package. 
 
+For Python ffmpeg.exe and ffmprobe.exe need to be added to path.
+
+Form Matlab ffmpeg.exe and ffmprobe.exe need to be in folder with code.
+
+For C# ffmpeg.exe and ffmprobe.exe need to be added to folder with .exe file of your program.
+
+
