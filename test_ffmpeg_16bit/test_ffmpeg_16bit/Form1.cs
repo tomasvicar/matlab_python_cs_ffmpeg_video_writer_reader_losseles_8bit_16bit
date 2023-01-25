@@ -62,16 +62,16 @@ namespace test_ffmpeg_16bit
 
             if (comboBox_type.Text == "rgb24")
             {
-                ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24", "bgr0");
+                ffmpegVideoWriter.writeVideo(imgs, 25, "rgb24", "bgr0", imgs.ElementAt(0).Width, imgs.ElementAt(0).Height);
             }
             else if (comboBox_type.Text == "gray16le")
             {
 
-                ffmpegVideoWriter.writeVideo(imgs, 25, "gray16", "gray16le");
+                ffmpegVideoWriter.writeVideo(imgs, 25, "gray16", "gray16le", imgs.ElementAt(0).Width, imgs.ElementAt(0).Height);
             }
             else if (comboBox_type.Text == "gray8")
             {
-                ffmpegVideoWriter.writeVideo(imgs, 25, "gray8", "gray8");
+                ffmpegVideoWriter.writeVideo(imgs, 25, "gray8", "gray8", imgs.ElementAt(0).Width, imgs.ElementAt(0).Height);
             }
             else
             {
