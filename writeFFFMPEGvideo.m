@@ -1,7 +1,13 @@
 function [] = writeFFFMPEGvideo(filename, data, fps)
     
     ffmpeg_path = 'ffmpeg.exe';
+%     ffmpeg_path = 'C:\Program Files\ffmpeg\bin\ffmpeg.exe';
     codec = 'ffv1'; %losseles codec
+    
+    if ~isfile(ffmpeg_path)
+        error('incorrect ffmpeg_path; please set this path in writeFFFMPEGvideo')
+    end
+
     
 %     filename = 'output.avi';
 %     data = imread('peppers.png');
@@ -29,7 +35,7 @@ function [] = writeFFFMPEGvideo(filename, data, fps)
     n_frames = size(data,4);
     
     
-    cmd = [ffmpeg_path, ...
+    cmd = ['"' ffmpeg_path '"', ...
          ' -y' ...
          ' -video_size ', num2str(width),'x', num2str(height), ...
          ' -f rawvideo', ...
