@@ -1,7 +1,15 @@
 function [data,fps] = readFFFMPEGvideo(filename, format, bytes_per_pixel, color_channels, cast_to_uint16)
 
+
+% ffmpeg_path = 'C:\Program Files\ffmpeg\bin\ffmpeg.exe';
+% ffprobe_path = 'C:\Program Files\ffmpeg\bin\ffprobe.exe';
+
 ffmpeg_path = 'ffmpeg.exe';
 ffprobe_path = 'ffprobe.exe';
+
+if ~isfile(ffmpeg_path) || ~isfile(ffprobe_path)
+    error('incorrect ffmpeg_path/ffprobe_path; please set this path in readFFFMPEGvideo')
+end
 
 %     filename = 'Gacr_01_001_01_580_m_short.avi';
 %     format = 'rgb24';
@@ -19,7 +27,7 @@ ffprobe_path = 'ffprobe.exe';
     [metadata] = getMetaData(filename,ffprobe_path);
 
 
-    cmd = [ffmpeg_path, ...
+    cmd = ['"' ffmpeg_path '"', ...
          ' -y', ...
          ' -i ', filename, ...
          ' -f rawvideo', ...
@@ -86,7 +94,7 @@ end
 
 function [metadata] = getMetaData(filename,ffprobe_path)
      % get metadata using FFPROBE
-     out = evalc(['!' ffprobe_path ' -show_streams ' filename]);
+     out = evalc(['!"' ffprobe_path '" -show_streams "' filename '"']);
      out(strfind(out, '=')) = [];
      % map FFPROBE output to their corresponding class variables
      keys = {'nb_frames', 'width', 'height', 'r_frame_rate'};
